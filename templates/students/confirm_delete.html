@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Eliminar {{ type }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card border-danger">
+      <div class="card-header bg-danger text-white"><i class="bi bi-exclamation-triangle me-2"></i>Confirmar eliminación</div>
+      <div class="card-body">
+        <p>¿Estás seguro de que deseas eliminar <strong>{{ object }}</strong>?</p>
+        {% if type == "estudiante" %}<p class="text-muted small">También se eliminarán todos sus libros asociados.</p>{% endif %}
+        <form method="post" class="d-flex gap-2">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+          <a href="javascript:history.back()" class="btn btn-outline-secondary">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
